@@ -4,5 +4,6 @@ classdef CtrlEnum < Simulink.IntEnumType
     BASELINE(2)
     BASELINE_L1(3)
     BASELINE_AGI(4)
+    HOVER_BASELINE(5)
   end
 end

@@ -93,259 +93,259 @@ legend({'ground track','flown ground track'},'fontsize',12)
 grid on
 zoom on
 
-
-% Control Surfaces
-figure
-subplot(3,1,1)
-plot(time, [dele d_dele]*180/pi)
-ylabel('elevator','fontsize',15)
-legend({'$\delta$ [deg]','$\dot{\delta}$ [deg/sec]'}, 'fontsize', 12,'Interpreter','latex')
-axis([min(time) max(time) -35 35])
-grid on;
-zoom on;
-
-subplot(3,1,2)
-plot(time, [dela d_dela]*180/pi)
-ylabel('aileron','fontsize',15)
-axis( [min(time) max(time) -35 35])
-grid on;
-zoom on;
-
-subplot(3,1,3)
-plot(time, [delr d_delr]*180/pi)
-ylabel('rudder','fontsize',15)
-xlabel('time [sec]','fontsize',15)
-axis( [min(time) max(time) -35 35])
-grid on;
-zoom on;
-
-figure
-plot(time, [phi theta]*180/pi)
-title('Pitch and Roll Angles')
-ylabel('[deg]','fontsize',15)
-legend({'$\phi$','$\theta$'},'fontsize',12,'Interpreter','latex')
-axis([min(time) max(time) -40 40])
-grid on;
-zoom on;
-
-% Control Surfaces
-figure
-subplot(2,1,1)
-plot(time, [dele]*180/pi)
-ylabel('elevator [deg]','fontsize',15)
-axis([min(time) max(time) -40 40])
-grid on;
-zoom on;
-
-subplot(2,1,2)
-plot(time, prop_om(:,1:8)*60/2/pi)
-ylabel('rotors [rpm]','fontsize',15)
-axis([0 max(time) 0 1500])
-grid on
-zoom on
-
-% performance plots
-figure
-subplot(4,1,1)
-plot(time, -pos(:,3),time, -pos_des(:,3))
-ylabel('height [ft]','fontsize',15)
-legend({'flown','desired'},'fontsize',12)
-%axis([min(t_des) max(time) min(-pos_des(:,3)) max(-pos_des(:,3))+spc])
-grid on
-zoom on
-
-subplot(4,1,2)
-if SimIn.refInputType == RefInputEnum.TIMESERIES
-    plot(time, V,t_des, V_cmd)
-else
-    plot(time, V)
-end
-ylabel('vel [ft/s]','fontsize',15)
-%axis([min(t_des) max(time) min(V) max(V)+10])
-grid on;
-zoom on;
-
-subplot(4,1,3)
-plot(time, gamma*180/pi) %, t_des, gamma_cmd*180/pi)
-ylabel('$\gamma$ [deg]','fontsize',15,'Interpreter','latex')
-%axis([min(t_des) max(time) min(gamma)*180/pi-10 max(gamma)*180/pi+10])
-grid on;
-zoom on;
-
-subplot(4,1,4)
-plot(time, psi*180/pi) %, t_des, chi_cmd*180/pi)
-ylabel('$\psi$ [deg]','fontsize',15,'Interpreter','latex')
-xlabel('time [sec]','fontsize',15)
-%axis([min(t_des) max(time) -25 25])
-grid on;
-zoom on;
-
-total_power = sum(prop_power_watts,2);
-
-% rotor/prop plot 4X1
-figure
-subplot(4,1,1)
-plot(time, prop_om(:,1:4)*60/2/pi)
-ylabel('leading [rpm]','fontsize',15)
-legend({'rotor 1','rotor 2','rotor 3','rotor 4'},'fontsize',12)
-%axis([0 max(time) 0 1250])
-grid on
-zoom on
-
-subplot(4,1,2)
-plot(time, prop_om(:,5:8)*60/2/pi)
-ylabel('trailing [rpm]','fontsize',15)
-legend({'rotor 5','rotor 6','rotor 7','rotor 8'},'fontsize',12)
-%axis([0 max(time) 0 1250])
-grid on
-zoom on
-
-subplot(4,1,3)
-plot(time, prop_om(:,9)*60/2/pi)
-ylabel('pusher [rpm]','fontsize',15)
-%axis([0 max(time) 0 2500])
-grid on
-zoom on
-
-subplot(4,1,4)
-plot(time, total_power/1000,'linewidth',1.5)
-ylabel('{\bf Power [kW]}','fontsize',15,'Interpreter','latex')
-xlabel('time [sec]','fontsize',15)
-%axis([-1 max(time) 0 1000])
-grid on
-zoom on
-
-% rotor/prop plot 3X1
-figure
-subplot(3,1,1)
-plot(time, prop_om(:,1:8)*60/2/pi)
-ylabel('rotors [rpm]','fontsize',10)
-%axis([0 max(time) 0 1250])
-grid on
-zoom on
-
-subplot(3,1,2)
-plot(time, prop_om(:,9)*60/2/pi)
-ylabel('pusher [rpm]','fontsize',10)
-%axis([0 max(time) 0 3000])
-grid on
-zoom on
-
-subplot(3,1,3)
-plot(time, total_power/1000,'linewidth',1.5)
-ylabel('{\bf Power [kW]}','fontsize',10,'Interpreter','latex')
-xlabel('time [sec]','fontsize',15)
-%axis([-1 max(time) 0 1000])
-grid on
-zoom on
-
-% Combined plot
-figure
-subplot(6,1,1)
-plot(time, -pos(:,3),time, -pos_des(:,3))
-ylabel('height [ft]','fontsize',15)
-legend({'flown','desired'},'fontsize',12)
-%axis([min(t_des) max(time) min(-pos_des(:,3)) max(-pos_des(:,3))+spc])
-grid on
-zoom on
-
-subplot(6,1,2)
-plot(time, V/SimIn.Units.knot,t_des, V_cmd/SimIn.Units.knot)
-ylabel('vel [kts]','fontsize',15)
-%axis([min(t_des) max(time) min(V)/SimIn.Units.knot max(V_cmd)/SimIn.Units.knot+25])
-grid on;
-zoom on;
-
+% 
+% % Control Surfaces
+% figure
+% subplot(3,1,1)
+% plot(time, [dele d_dele]*180/pi)
+% ylabel('elevator','fontsize',15)
+% legend({'$\delta$ [deg]','$\dot{\delta}$ [deg/sec]'}, 'fontsize', 12,'Interpreter','latex')
+% axis([min(time) max(time) -35 35])
+% grid on;
+% zoom on;
+% 
+% subplot(3,1,2)
+% plot(time, [dela d_dela]*180/pi)
+% ylabel('aileron','fontsize',15)
+% axis( [min(time) max(time) -35 35])
+% grid on;
+% zoom on;
+% 
+% subplot(3,1,3)
+% plot(time, [delr d_delr]*180/pi)
+% ylabel('rudder','fontsize',15)
+% xlabel('time [sec]','fontsize',15)
+% axis( [min(time) max(time) -35 35])
+% grid on;
+% zoom on;
+% 
+% figure
+% plot(time, [phi theta]*180/pi)
+% title('Pitch and Roll Angles')
+% ylabel('[deg]','fontsize',15)
+% legend({'$\phi$','$\theta$'},'fontsize',12,'Interpreter','latex')
+% axis([min(time) max(time) -40 40])
+% grid on;
+% zoom on;
+% 
+% % Control Surfaces
+% figure
+% subplot(2,1,1)
+% plot(time, [dele]*180/pi)
+% ylabel('elevator [deg]','fontsize',15)
+% axis([min(time) max(time) -40 40])
+% grid on;
+% zoom on;
+% 
+% subplot(2,1,2)
+% plot(time, prop_om(:,1:8)*60/2/pi)
+% ylabel('rotors [rpm]','fontsize',15)
+% axis([0 max(time) 0 1500])
+% grid on
+% zoom on
+% 
+% % performance plots
+% figure
+% subplot(4,1,1)
+% plot(time, -pos(:,3),time, -pos_des(:,3))
+% ylabel('height [ft]','fontsize',15)
+% legend({'flown','desired'},'fontsize',12)
+% %axis([min(t_des) max(time) min(-pos_des(:,3)) max(-pos_des(:,3))+spc])
+% grid on
+% zoom on
+% 
+% subplot(4,1,2)
+% if SimIn.refInputType == RefInputEnum.TIMESERIES
+%     plot(time, V,t_des, V_cmd)
+% else
+%     plot(time, V)
+% end
+% ylabel('vel [ft/s]','fontsize',15)
+% %axis([min(t_des) max(time) min(V) max(V)+10])
+% grid on;
+% zoom on;
+% 
+% subplot(4,1,3)
+% plot(time, gamma*180/pi) %, t_des, gamma_cmd*180/pi)
+% ylabel('$\gamma$ [deg]','fontsize',15,'Interpreter','latex')
+% %axis([min(t_des) max(time) min(gamma)*180/pi-10 max(gamma)*180/pi+10])
+% grid on;
+% zoom on;
+% 
+% subplot(4,1,4)
+% plot(time, psi*180/pi) %, t_des, chi_cmd*180/pi)
+% ylabel('$\psi$ [deg]','fontsize',15,'Interpreter','latex')
+% xlabel('time [sec]','fontsize',15)
+% %axis([min(t_des) max(time) -25 25])
+% grid on;
+% zoom on;
+% 
+% total_power = sum(prop_power_watts,2);
+% 
+% % rotor/prop plot 4X1
+% figure
+% subplot(4,1,1)
+% plot(time, prop_om(:,1:4)*60/2/pi)
+% ylabel('leading [rpm]','fontsize',15)
+% legend({'rotor 1','rotor 2','rotor 3','rotor 4'},'fontsize',12)
+% %axis([0 max(time) 0 1250])
+% grid on
+% zoom on
+% 
+% subplot(4,1,2)
+% plot(time, prop_om(:,5:8)*60/2/pi)
+% ylabel('trailing [rpm]','fontsize',15)
+% legend({'rotor 5','rotor 6','rotor 7','rotor 8'},'fontsize',12)
+% %axis([0 max(time) 0 1250])
+% grid on
+% zoom on
+% 
+% subplot(4,1,3)
+% plot(time, prop_om(:,9)*60/2/pi)
+% ylabel('pusher [rpm]','fontsize',15)
+% %axis([0 max(time) 0 2500])
+% grid on
+% zoom on
+% 
+% subplot(4,1,4)
+% plot(time, total_power/1000,'linewidth',1.5)
+% ylabel('{\bf Power [kW]}','fontsize',15,'Interpreter','latex')
+% xlabel('time [sec]','fontsize',15)
+% %axis([-1 max(time) 0 1000])
+% grid on
+% zoom on
+% 
+% % rotor/prop plot 3X1
+% figure
+% subplot(3,1,1)
+% plot(time, prop_om(:,1:8)*60/2/pi)
+% ylabel('rotors [rpm]','fontsize',10)
+% %axis([0 max(time) 0 1250])
+% grid on
+% zoom on
+% 
+% subplot(3,1,2)
+% plot(time, prop_om(:,9)*60/2/pi)
+% ylabel('pusher [rpm]','fontsize',10)
+% %axis([0 max(time) 0 3000])
+% grid on
+% zoom on
+% 
+% subplot(3,1,3)
+% plot(time, total_power/1000,'linewidth',1.5)
+% ylabel('{\bf Power [kW]}','fontsize',10,'Interpreter','latex')
+% xlabel('time [sec]','fontsize',15)
+% %axis([-1 max(time) 0 1000])
+% grid on
+% zoom on
+% 
+% % Combined plot
+% figure
+% subplot(6,1,1)
+% plot(time, -pos(:,3),time, -pos_des(:,3))
+% ylabel('height [ft]','fontsize',15)
+% legend({'flown','desired'},'fontsize',12)
+% %axis([min(t_des) max(time) min(-pos_des(:,3)) max(-pos_des(:,3))+spc])
+% grid on
+% zoom on
+% 
+% subplot(6,1,2)
+% plot(time, V/SimIn.Units.knot,t_des, V_cmd/SimIn.Units.knot)
+% ylabel('vel [kts]','fontsize',15)
+% %axis([min(t_des) max(time) min(V)/SimIn.Units.knot max(V_cmd)/SimIn.Units.knot+25])
+% grid on;
+% zoom on;
+% 
+% % subplot(6,1,3)
+% plot(time, psi*180/pi) %, t_des, chi_cmd*180/pi)
+% ylabel('$\chi$ [deg]','fontsize',15,'Interpreter','latex')
+% %axis([min(t_des) max(time) -180 0])
+% grid on;
+% zoom on;
+% 
+% subplot(6,1,4)
+% plot(time, prop_om(:,9)*60/2/pi)
+% ylabel('pusher [rpm]','fontsize',15)
+% %axis([0 max(time) 0 3000])
+% grid on
+% zoom on
+% 
+% subplot(6,1,5)
+% plot(time, prop_om(:,1:8)*60/2/pi)
+% ylabel('rotors [rpm]','fontsize',15)
+% %axis([0 max(time) 0 1200])
+% grid on
+% zoom on
+% 
+% subplot(6,1,6)
+% plot(time, total_power/1000,'linewidth',1.5)
+% ylabel('{\bf Power [kW]}','fontsize',15,'Interpreter','latex')
+% xlabel('time [sec]','fontsize',15)
+% %axis([-1 max(time) 0 1000])
+% grid on
+% zoom on
+% 
+% % Combined plot
+% figure
+% subplot(6,1,1)
+% plot(time, -pos(:,3),time, -pos_des(:,3))
+% ylabel('height [ft]','fontsize',15)
+% legend({'flown','desired'},'fontsize',12)
+% axis([min(t_des) max(time) min(-pos_des(:,3)) max(-pos_des(:,3))+spc])
+% grid on
+% zoom on
+% 
+% subplot(6,1,2)
+% plot(time, V/SimIn.Units.knot,t_des, V_cmd/SimIn.Units.knot)
+% ylabel('vel [kts]','fontsize',15)
+% axis([min(t_des) max(time) min(V)/SimIn.Units.knot max(V_cmd)/SimIn.Units.knot+10])
+% grid on;
+% zoom on;
+% 
 % subplot(6,1,3)
-plot(time, psi*180/pi) %, t_des, chi_cmd*180/pi)
-ylabel('$\chi$ [deg]','fontsize',15,'Interpreter','latex')
-%axis([min(t_des) max(time) -180 0])
-grid on;
-zoom on;
-
-subplot(6,1,4)
-plot(time, prop_om(:,9)*60/2/pi)
-ylabel('pusher [rpm]','fontsize',15)
-%axis([0 max(time) 0 3000])
-grid on
-zoom on
-
-subplot(6,1,5)
-plot(time, prop_om(:,1:8)*60/2/pi)
-ylabel('rotors [rpm]','fontsize',15)
-%axis([0 max(time) 0 1200])
-grid on
-zoom on
-
-subplot(6,1,6)
-plot(time, total_power/1000,'linewidth',1.5)
-ylabel('{\bf Power [kW]}','fontsize',15,'Interpreter','latex')
-xlabel('time [sec]','fontsize',15)
-%axis([-1 max(time) 0 1000])
-grid on
-zoom on
-
-% Combined plot
-figure
-subplot(6,1,1)
-plot(time, -pos(:,3),time, -pos_des(:,3))
-ylabel('height [ft]','fontsize',15)
-legend({'flown','desired'},'fontsize',12)
-axis([min(t_des) max(time) min(-pos_des(:,3)) max(-pos_des(:,3))+spc])
-grid on
-zoom on
-
-subplot(6,1,2)
-plot(time, V/SimIn.Units.knot,t_des, V_cmd/SimIn.Units.knot)
-ylabel('vel [kts]','fontsize',15)
-axis([min(t_des) max(time) min(V)/SimIn.Units.knot max(V_cmd)/SimIn.Units.knot+10])
-grid on;
-zoom on;
-
-subplot(6,1,3)
-plot(time, [dele]*180/pi)
-ylabel('elevator [deg]','fontsize',15)
-%axis([min(time) max(time) -40 40])
-grid on;
-zoom on;
-
-subplot(6,1,4)
-plot(time, prop_om(:,9)*60/2/pi)
-ylabel('pusher [rpm]','fontsize',15)
-%axis([0 max(time) 0 3000])
-grid on
-zoom on
-
-subplot(6,1,5)
-plot(time, prop_om(:,1:8)*60/2/pi)
-ylabel('rotors [rpm]','fontsize',15)
-%axis([0 max(time) 0 1200])
-grid on
-zoom on
-
-subplot(6,1,6)
-plot(time, total_power/1000,'linewidth',1.5)
-ylabel('{\bf Power [kW]}','fontsize',15,'Interpreter','latex')
-xlabel('time [sec]','fontsize',15)
-%axis([-1 max(time) 0 1000])
-grid on
-zoom on
-
-figure
-plot(time, winds,'linewidth',1.25)
-ylabel('{\bf Winds [ft/s]}','fontsize',15,'Interpreter','latex')
-xlabel('time [sec]','fontsize',15)
-legend('$u_w$','$v_w$','$w_w$','Interpreter','latex');
-%axis([0 max(time) -25 25])
-grid on
-zoom on
-
-figure
-plot(time, (pos-pos_des),'linewidth',1.25)
-ylabel('Position Error [ft]','fontsize',15)
-xlabel('time [sec]','fontsize',15)
-legend('x','y','z');
-grid on
-zoom on
-
-
+% plot(time, [dele]*180/pi)
+% ylabel('elevator [deg]','fontsize',15)
+% %axis([min(time) max(time) -40 40])
+% grid on;
+% zoom on;
+% 
+% subplot(6,1,4)
+% plot(time, prop_om(:,9)*60/2/pi)
+% ylabel('pusher [rpm]','fontsize',15)
+% %axis([0 max(time) 0 3000])
+% grid on
+% zoom on
+% 
+% subplot(6,1,5)
+% plot(time, prop_om(:,1:8)*60/2/pi)
+% ylabel('rotors [rpm]','fontsize',15)
+% %axis([0 max(time) 0 1200])
+% grid on
+% zoom on
+% 
+% subplot(6,1,6)
+% plot(time, total_power/1000,'linewidth',1.5)
+% ylabel('{\bf Power [kW]}','fontsize',15,'Interpreter','latex')
+% xlabel('time [sec]','fontsize',15)
+% %axis([-1 max(time) 0 1000])
+% grid on
+% zoom on
+% 
+% figure
+% plot(time, winds,'linewidth',1.25)
+% ylabel('{\bf Winds [ft/s]}','fontsize',15,'Interpreter','latex')
+% xlabel('time [sec]','fontsize',15)
+% legend('$u_w$','$v_w$','$w_w$','Interpreter','latex');
+% %axis([0 max(time) -25 25])
+% grid on
+% zoom on
+% 
+% figure
+% plot(time, (pos-pos_des),'linewidth',1.25)
+% ylabel('Position Error [ft]','fontsize',15)
+% xlabel('time [sec]','fontsize',15)
+% legend('x','y','z');
+% grid on
+% zoom on
+% 
+% 

@@ -2,7 +2,10 @@
 close_system('GUAM',0);
 
 % setup default base paths
-setupPath;
+setupPath
+
+
+%%
 
 % setup the structure containing enumeration values used to set types in
 % SimIn to determine variant selections (used by setupTypes.m)

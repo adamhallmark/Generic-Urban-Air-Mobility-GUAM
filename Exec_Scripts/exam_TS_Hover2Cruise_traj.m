@@ -23,6 +23,7 @@ vel_i   = [0 0 -8;0 0 0; 15 0 0];
 % vel_i(:,2)  = gradient(pos(:,2))./gradient(time); 
 % vel_i(:,3)  = gradient(pos(:,3))./gradient(time); 
 
+%%
 % Compute heading
 chi     = atan2(vel_i(:,2),vel_i(:,1));
 chid    = gradient(chi)./gradient(time);
@@ -46,4 +47,10 @@ target.RefInput = RefInput;
 %% Prepare to run simulation
 % set initial conditions and add trajectory to SimInput
 simSetup;
+
+%% ADAM MODIFICATION: change to s-function model
+
+% SimIn.fmType = "SFunction";
+
+%%
 open(model);
