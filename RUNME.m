@@ -25,6 +25,8 @@ switch u_choice
 end
 
 load('C:\Users\texba\OneDrive\Documents\AEM 699\sci_tech_2025_paper\matlab\data\hover_gains.mat')
+load('C:\Users\texba\OneDrive\Documents\AEM 699\sci_tech_2025_paper\matlab\data\transition_gains.mat')
+load('C:\Users\texba\OneDrive\Documents\AEM 699\sci_tech_2025_paper\matlab\data\cruise_gains.mat')
 % Execute the model
 sim(model);
 % Create sample output plots
@@ -43,7 +45,7 @@ hold on
 plot(vel_des.Time, vel_des.Data(:,1), '--', linewidth=1, DisplayName='u_{cmd}')
 grid on
 legend(location='best', FontSize=12)
-title('x-Velocity Tracking Performance: Hover Controller', FontSize=12)
+title('x-Velocity Tracking Performance', FontSize=12)
 ylabel('ft/s')
 ylim('padded')
 
@@ -53,7 +55,7 @@ hold on
 plot(vel_des.Time, vel_des.Data(:,2), '--', linewidth=1, DisplayName='v_{cmd}')
 grid on
 legend(location='best', FontSize=12)
-title('y-Velocity Regulation Performance: Hover Controller', FontSize=12)
+title('y-Velocity Regulation Performance', FontSize=12)
 ylabel('ft/s')
 ylim('padded')
 
@@ -63,6 +65,6 @@ hold on
 plot(vel_des.Time, vel_des.Data(:,3), '--', linewidth=1, DisplayName='w_{cmd}')
 grid on
 legend(location='best', FontSize=12)
-title('z-Velocity Tracking Performance: Hover Controller', FontSize=12)
+title('z-Velocity Tracking Performance', FontSize=12)
 ylabel('ft/s')
 ylim('padded')

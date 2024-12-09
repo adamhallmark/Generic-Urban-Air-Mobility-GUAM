@@ -5,28 +5,20 @@ userStruct.variants.refInputType=3; % 1=FOUR_RAMP, 2= ONE_RAMP, 3=Timeseries, 4=
 
 %% ADAM EDITS TO SPECIFY DESIRED TRAJECTORY AND SETUP REFERENCE INPUTS
 
-% Prescribe column vector of times when desired inertial position and 
-% velocity can be prescribed
-dt = 0.001;
-time = 0:dt:30;
-N_time = length(time);
+% Load refTraj mat file for the reference trajectory in one of the three
+% modes: hover, cruise, or transition
 
-vel     = zeros(N_time, 3);
-vel_i   = zeros(N_time, 3);
-pos     = zeros(N_time, 3);
-chi     = zeros(N_time, 3);
-chid    = zeros(N_time, 3);
+% hover:
+% load("C:\Users\texba\OneDrive\Documents\AEM 699\sci_tech_2025_paper\matlab\data\refTraj_hover.mat")
 
-step_time = 1;
-step_idx = floor(step_time/dt)+1;
+% cruise:
+% load("C:\Users\texba\OneDrive\Documents\AEM 699\sci_tech_2025_paper\matlab\data\refTraj_cruise.mat")
 
-vel_i(step_idx:end, :) = [ones(N_time-step_idx+1, 1), ...
-    zeros(N_time-step_idx+1, 1), -10*ones(N_time-step_idx+1, 1)];
-
-pos = cumtrapz(dt, vel_i);
+% transition:
+load("C:\Users\texba\OneDrive\Documents\AEM 699\sci_tech_2025_paper\matlab\data\refTraj_transition.mat")
 
 %%
-%
+
 % Compute heading
 chi     = atan2(vel_i(:,2),vel_i(:,1));
 chid    = gradient(chi)./gradient(time).';
@@ -48,8 +40,10 @@ RefInput.vel_des        = timeseries(vel_i,time); % Inertial Position
 target.RefInput = RefInput;
 
 %% ADAM MODIFICATION: Specify Controller Variant
-
-userStruct.variants.ctrlType=5;
+%   5: Hover Baseline
+%   6: Cruise Baseline
+%   7: Transition Baseline
+userStruct.variants.ctrlType=7;
 
 %% Prepare to run simulation
 % set initial conditions and add trajectory to SimInput
@@ -57,7 +51,7 @@ simSetup;
 
 %% ADAM MODIFICATION: change aeropropulsive model to s-function model
 
-SimIn.fmType = "SFunction";
+% SimIn.fmType = "SFunction";
 
 %%
 open(model);
